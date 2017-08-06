@@ -24,6 +24,7 @@ Quick start
 
 
 2. つかう ::
+
     usage: pysize [-h] [-p PATH] [-s SORT] [-r] [-f] [-u]
     
     optional arguments:
