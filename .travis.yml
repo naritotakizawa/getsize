@@ -1,13 +1,13 @@
 language: python
+
+before_script:
+  - pip install coveralls
  
 python:
     - "3.4"
     - "3.5"
     - "3.6"
 
-install:
-    - pip install coveralls
- 
 script:
     - python -Wall setup.py test -a "--cov getsize --cov-report term-missing"
 
