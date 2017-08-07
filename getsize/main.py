@@ -75,11 +75,18 @@ def _main(path=None, sort_type='size',
     if show_full_path:
         path = os.path.abspath(path)
 
-    # カレント以下のファイル・ディレクトリを全て取得し、サイズを測る
-    with os.scandir(path) as it:
-        for entry in it:
-            size = get_size(entry.path)
-            all_size.append((entry.path, size))
+    # 対象パスがファイルなら
+    if os.path.isfile(path):
+        size = os.path.getsize(path)
+        all_size.append((path, size))
+
+    # 対象パスがディレクトリなら
+    else:
+        # path以下のファイル・ディレクトリを全て取得し、サイズを測る
+        with os.scandir(path) as it:
+            for entry in it:
+                size = get_size(entry.path)
+                all_size.append((entry.path, size))
 
     # ソート処理
     if sort_type == 'size':
